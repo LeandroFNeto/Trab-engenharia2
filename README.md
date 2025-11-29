@@ -40,8 +40,7 @@ Você deve ver números de versão como resposta (ex: v18.0.0 para Node.js).
 Se o projeto estiver no GitHub, clone-o:
 
 ```bash
-git clone https://github.com/seu-usuario/api-tarefas.git
-cd api-tarefas
+git clone https://github.com/LeandroFNeto/Trab-engenharia2.git
 ```
 
 Ou, se você recebeu os arquivos diretamente, extraia-os em uma pasta de sua escolha e abra o terminal nessa pasta.
