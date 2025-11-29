@@ -114,76 +114,8 @@ curl -X PUT http://localhost:3000/tarefas/1 \
 curl -X DELETE http://localhost:3000/tarefas/1
 ```
 
-### Usando Postman
 
-1. Baixe o [Postman](https://www.postman.com/downloads/)
-2. Crie uma nova requisição
-3. Selecione o método HTTP (GET, POST, PUT, DELETE)
-4. Cole a URL: `http://localhost:3000/tarefas`
-5. Para POST e PUT, adicione o JSON no corpo (Body)
-6. Clique em "Send"
 
----
-
-## Publicação no GitHub
-
-### Passo 1: Criar um Repositório no GitHub
-
-1. Acesse [GitHub.com](https://github.com) e faça login
-2. Clique no ícone **+** no canto superior direito
-3. Selecione **New repository**
-4. Preencha os dados:
-   - **Repository name:** `api-tarefas`
-   - **Description:** API simples de gerenciamento de tarefas
-   - **Public** (para que seja acessível)
-5. Clique em **Create repository**
-
-### Passo 2: Preparar o Repositório Local
-
-Na pasta do projeto, execute:
-
-```bash
-git init
-git add .
-git commit -m "Commit inicial: API de Tarefas"
-```
-
-### Passo 3: Conectar ao GitHub
-
-Copie o comando que o GitHub fornece (algo como):
-
-```bash
-git branch -M main
-git remote add origin https://github.com/seu-usuario/api-tarefas.git
-git push -u origin main
-```
-
-### Passo 4: Verificar no GitHub
-
-Acesse seu repositório no GitHub e verifique se os arquivos foram enviados corretamente.
-
----
-
-## Publicação em Servidor (Opcional)
-
-### Opção 1: Usar Servidor UENP (Recomendado)
-
-Se deseja hospedar a API no servidor da UENP:
-
-1. **Envie um email** para o professor: **thiago.coleti@uenp.edu.br**
-2. **Assunto:** Solicitação de Hospedagem - API de Tarefas
-3. **Conteúdo do Email:**
-
-```
-Prezado Professor Thiago,
-
-Solicitamos a hospedagem da API de Tarefas no servidor da UENP para realização da Etapa 02 do seminário de Engenharia de Software II.
-
-Repositório GitHub: https://github.com/seu-usuario/api-tarefas
-
-Atenciosamente,
-[Seu Nome e Seu Colega]
-```
 
 ### Opção 2: Usar Heroku (Gratuito)
 
@@ -197,16 +129,6 @@ heroku create seu-app-name
 git push heroku main
 ```
 
-4. Sua API estará disponível em: `https://seu-app-name.herokuapp.com`
-
-### Opção 3: Usar Render (Gratuito)
-
-1. Crie uma conta em [Render.com](https://render.com)
-2. Conecte seu repositório GitHub
-3. Crie um novo "Web Service"
-4. Configure e faça o deploy
-
----
 
 ## Estrutura da Resposta da API
 
