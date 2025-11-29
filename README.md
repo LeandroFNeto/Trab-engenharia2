@@ -396,17 +396,7 @@ api-tarefas/
 └── README.md              # Instruções gerais
 ```
 
----
 
-## Tratamento de Erros
-
-A API fornece mensagens de erro claras e códigos de status HTTP apropriados para facilitar o diagnóstico de problemas:
-
-- **Título vazio ao criar tarefa:** Retorna `400 Bad Request` com mensagem de erro
-- **Tarefa não encontrada:** Retorna `404 Not Found` com mensagem de erro
-- **Rota não encontrada:** Retorna `404 Not Found` com mensagem genérica
-
----
 
 ## Notas Importantes
 
@@ -418,19 +408,7 @@ A API fornece mensagens de erro claras e códigos de status HTTP apropriados par
 
 4. **Validação Simples:** A validação de dados é básica. Para uma aplicação em produção, seria recomendado usar bibliotecas como `joi` ou `yup` para validação mais robusta.
 
----
 
-## Suporte e Dúvidas
-
-Se tiver dúvidas ou encontrar problemas ao usar a API, verifique:
-
-1. Se o Node.js está instalado corretamente
-2. Se as dependências foram instaladas com `npm install`
-3. Se o servidor está rodando com `npm start`
-4. Se você está usando a URL correta (http://localhost:3000)
-5. Se o método HTTP está correto (GET, POST, PUT, DELETE)
-
----
 
 ## Versão
 
