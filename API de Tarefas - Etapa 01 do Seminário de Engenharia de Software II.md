@@ -1,4 +1,4 @@
-# API de Tarefas - Etapa 01 do Seminário de Engenharia de Software II
+# API de Tarefas 
 
 ## Descrição do Projeto
 
@@ -113,22 +113,6 @@ curl -X PUT http://localhost:3000/tarefas/1 \
 ```bash
 curl -X DELETE http://localhost:3000/tarefas/1
 ```
-
-
-
-
-### Opção 2: Usar Heroku (Gratuito)
-
-1. Crie uma conta em [Heroku.com](https://www.heroku.com)
-2. Instale o Heroku CLI
-3. Execute os comandos:
-
-```bash
-heroku login
-heroku create seu-app-name
-git push heroku main
-```
-
 
 ## Estrutura da Resposta da API
 
