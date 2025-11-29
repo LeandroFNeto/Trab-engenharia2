@@ -50,8 +50,9 @@ Certifique-se de ter instalado:
 1. **Clone o repositório** (ou extraia os arquivos):
 
 ```bash
-git clone https://github.com/seu-usuario/api-tarefas.git
-cd api-tarefas
+git clone https://github.com/LeandroFNeto/Trab-engenharia2.git
+cd Trab-engenharia2
+
 ```
 
 2. **Instale as dependências**:
