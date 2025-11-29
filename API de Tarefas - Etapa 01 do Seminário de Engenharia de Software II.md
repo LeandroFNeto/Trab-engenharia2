@@ -15,7 +15,7 @@ A API oferece as seguintes funcionalidades através de 4 métodos principais:
 
 ---
 
-## Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - **Node.js** - Runtime JavaScript para servidor
 - **Express.js** - Framework web minimalista para Node.js
