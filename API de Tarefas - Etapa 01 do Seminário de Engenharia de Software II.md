@@ -278,37 +278,15 @@ Depois, crie um arquivo `api.test.js` com testes para cada endpoint.
 
 ---
 
-## Troubleshooting
-
-### Erro: "npm: command not found"
-
-**Solução:** Node.js não está instalado. Baixe e instale de [nodejs.org](https://nodejs.org)
-
-### Erro: "Port 3000 is already in use"
-
-**Solução:** Outro processo está usando a porta 3000. Você pode:
-- Fechar o outro processo
-- Usar uma porta diferente: `PORT=3001 npm start`
-
-### Erro: "Cannot find module 'express'"
-
-**Solução:** Execute `npm install` para instalar as dependências
-
-### API não responde
-
-**Solução:**
-1. Verifique se o servidor está rodando (`npm start`)
-2. Verifique a URL (deve ser `http://localhost:3000`)
-3. Verifique se o método HTTP está correto
 
 ---
 
 ## Autores
 
-**Desenvolvido por:** [Seu Nome] e [Nome do Colega]  
+**Desenvolvido por:** [Leandro de freitas Neto] 
 **Disciplina:** Engenharia de Software II  
 **Instituição:** UENP  
-**Data:** Novembro de 2025
+
 
 ---
 
@@ -318,29 +296,4 @@ Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para ma
 
 ---
 
-## Contato
 
-Para dúvidas ou sugestões sobre a API, entre em contato com o professor:
-
-**Professor:** Thiago Coleti  
-**Email:** thiago.coleti@uenp.edu.br
-
----
-
-## Checklist para Entrega
-
-Antes de entregar a Etapa 01, certifique-se de que:
-
-- [ ] API criada em um único arquivo (`api.js`)
-- [ ] `package.json` configurado corretamente
-- [ ] Documentação completa (`DOCUMENTACAO_API.md`)
-- [ ] README com instruções (`README.md`)
-- [ ] Projeto enviado para GitHub
-- [ ] API publicada e acessível
-- [ ] Todos os 4 métodos funcionando corretamente
-- [ ] Email enviado ao professor (se usar servidor UENP)
-- [ ] Arquivos entregues no Classroom
-
----
-
-**Boa sorte com a entrega!** 🚀
