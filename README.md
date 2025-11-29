@@ -41,6 +41,8 @@ Se o projeto estiver no GitHub, clone-o:
 
 ```bash
 git clone https://github.com/LeandroFNeto/Trab-engenharia2.git
+cd Trab-engenharia2
+
 ```
 
 Ou, se você recebeu os arquivos diretamente, extraia-os em uma pasta de sua escolha e abra o terminal nessa pasta.
