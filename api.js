@@ -7,7 +7,6 @@ app.use(express.json());
 
 // ========================================================
 // 1. O SITE (FRONTEND) EMBUTIDO
-// (O HTML está aqui dentro para garantir que o Render encontre)
 // ========================================================
 const SITE_HTML = `
 <!DOCTYPE html>
@@ -28,12 +27,19 @@ const SITE_HTML = `
 
         ul { list-style: none; padding: 0; }
         li { background: #fff; border-bottom: 1px solid #eee; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
-        .task-info { display: flex; flex-direction: column; }
+        .task-info { display: flex; flex-direction: column; flex: 1; margin-right: 10px; } /* [NOVO] Flex grow para empurrar botões */
         .task-title { font-weight: 600; font-size: 1.1em; }
         .task-desc { font-size: 0.85em; color: #666; margin-top: 4px; }
         
+        /* [NOVO] Agrupador de botões */
+        .actions { display: flex; gap: 5px; }
+
         .btn-delete { background: #fee2e2; color: #dc2626; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
         .btn-delete:hover { background: #fecaca; }
+
+        /* [NOVO] Estilo do botão editar */
+        .btn-edit { background: #fff3cd; color: #856404; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .btn-edit:hover { background: #ffeeba; }
         
         .loading { text-align: center; color: #888; margin-top: 20px; }
     </style>
@@ -54,6 +60,7 @@ const SITE_HTML = `
 
     <script>
         const API_URL = '/tarefas';
+        let tarefasAtuais = []; // [NOVO] Armazena estado local para facilitar edição
 
         // Carregar tarefas
         async function carregar() {
@@ -62,22 +69,29 @@ const SITE_HTML = `
                 const res = await fetch(API_URL);
                 const json = await res.json();
                 
-                if(json.dados.length === 0) {
+                // [NOVO] Salva na variável global
+                tarefasAtuais = json.dados || [];
+
+                if(tarefasAtuais.length === 0) {
                     lista.innerHTML = '<li style="justify-content:center; color:#888">Nenhuma tarefa encontrada.</li>';
                     return;
                 }
 
-                // Gera o HTML da lista
-                lista.innerHTML = json.dados.map(t => \`
+                // [NOVO] Adicionado botão de editar e div actions
+                lista.innerHTML = tarefasAtuais.map(t => \`
                     <li>
                         <div class="task-info">
                             <span class="task-title">\${t.titulo}</span>
                             <span class="task-desc">\${t.descricao || 'Sem descrição'}</span>
                         </div>
-                        <button class="btn-delete" onclick="deletar(\${t.id})">Excluir</button>
+                        <div class="actions">
+                            <button class="btn-edit" onclick="editar(\${t.id})">Editar</button>
+                            <button class="btn-delete" onclick="deletar(\${t.id})">Excluir</button>
+                        </div>
                     </li>
                 \`).join('');
             } catch (error) {
+                console.error(error);
                 lista.innerHTML = '<li style="color:red; justify-content:center">Erro ao conectar na API.</li>';
             }
         }
@@ -101,6 +115,32 @@ const SITE_HTML = `
             btn.innerText = 'Adicionar';
             btn.disabled = false;
             carregar();
+        }
+
+        // [NOVO] Função de Editar
+        async function editar(id) {
+            // Busca a tarefa na memória local para preencher o prompt
+            const tarefa = tarefasAtuais.find(t => t.id === id);
+            if (!tarefa) return;
+
+            // Usamos prompt simples para evitar complexidade de criar Modais HTML agora
+            const novoTitulo = prompt("Novo título:", tarefa.titulo);
+            if (novoTitulo === null) return; // Cancelou
+
+            const novaDescricao = prompt("Nova descrição:", tarefa.descricao);
+            if (novaDescricao === null) return; // Cancelou
+
+            // Chama a API com PUT
+            await fetch(API_URL + '/' + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    titulo: novoTitulo, 
+                    descricao: novaDescricao 
+                })
+            });
+            
+            carregar(); // Recarrega a lista
         }
 
         // Deletar tarefa
@@ -130,7 +170,7 @@ let proximoId = 3;
 // 3. ROTAS (API + SITE)
 // ========================================================
 
-// ROTA RAIZ: Entrega o Site HTML acima
+// ROTA RAIZ
 app.get('/', (req, res) => {
     res.send(SITE_HTML);
 });
@@ -161,8 +201,10 @@ app.put('/tarefas/:id', (req, res) => {
     const item = tarefas.find(t => t.id === id);
     if (!item) return res.status(404).json({ erro: 'Nao encontrado' });
     
-    if (req.body.titulo) item.titulo = req.body.titulo;
-    if (req.body.descricao) item.descricao = req.body.descricao;
+    // Atualiza apenas os campos enviados
+    if (req.body.titulo !== undefined) item.titulo = req.body.titulo;
+    if (req.body.descricao !== undefined) item.descricao = req.body.descricao;
+    if (req.body.concluida !== undefined) item.concluida = req.body.concluida;
     
     res.json({ sucesso: true, dados: item });
 });
@@ -180,7 +222,7 @@ app.delete('/tarefas/:id', (req, res) => {
 });
 
 // ========================================================
-// 4. INICIALIZAÇÃO (0.0.0.0 é essencial pro Render)
+// 4. INICIALIZAÇÃO
 // ========================================================
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor rodando na porta ${PORT}`);
