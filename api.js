@@ -18,7 +18,7 @@ let proximoId = 3;
 // ============================================
 // MÉTODO 1: GET /tarefas - Listar todas as tarefas
 // ============================================
-app.get('/tarefas', (req, res) => {s
+app.get('/tarefas', (req, res) => {
   res.status(200).json({
     sucesso: true,
     mensagem: 'Tarefas recuperadas com sucesso',
@@ -134,7 +134,7 @@ app.use((req, res) => {
 // ============================================
 // INICIAR O SERVIDOR
 // ============================================
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n✓ API de Tarefas iniciada com sucesso!`);
   console.log(`✓ Servidor rodando em: http://localhost:${PORT}`);
   console.log(`✓ Documentação disponível em: http://localhost:${PORT}/documentacao`);
