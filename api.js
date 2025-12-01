@@ -1,10 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para parsear JSON
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, 'public')));
 // Dados em memória (simulando um banco de dados simples)
 let tarefas = [
   { id: 1, titulo: 'Estudar Node.js', descricao: 'Aprender o básico de Node.js', concluida: false },
@@ -12,12 +13,12 @@ let tarefas = [
   { id: 3, titulo: 'Revisar conteúdo', descricao: 'Revisar aulas anteriores', concluida: true }
 ];
 
-let proximoId = 4;
+let proximoId = 3;
 
 // ============================================
 // MÉTODO 1: GET /tarefas - Listar todas as tarefas
 // ============================================
-app.get('/tarefas', (req, res) => {
+app.get('/tarefas', (req, res) => {s
   res.status(200).json({
     sucesso: true,
     mensagem: 'Tarefas recuperadas com sucesso',
@@ -119,22 +120,6 @@ app.delete('/tarefas/:id', (req, res) => {
   });
 });
 
-// ============================================
-// ROTA DE TESTE - GET /
-// ============================================
-app.get('/', (req, res) => {
-  res.status(200).json({
-    sucesso: true,
-    mensagem: 'API de Tarefas está funcionando corretamente',
-    versao: '1.0.0',
-    endpoints: [
-      'GET /tarefas',
-      'POST /tarefas',
-      'PUT /tarefas/:id',
-      'DELETE /tarefas/:id'
-    ]
-  });
-});
 
 // ============================================
 // TRATAMENTO DE ERROS - Rota não encontrada
